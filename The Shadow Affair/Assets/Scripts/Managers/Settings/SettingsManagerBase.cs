@@ -6,14 +6,11 @@ namespace SmugRag.Managers.Settings
     public abstract class SettingsManagerBase
     {
         protected ScriptableObject CurrentSettings;
-        private ScriptableObject _defaultSettings;
         protected ScriptableObject TemporarySettings;
+        private ScriptableObject _defaultSettings;
 
         private SettingsManagerFileSaveLoad _saveLoadManager;
         private SettingsManagerFileSaveLoad.SettingType _settingType;
-
-        public Action OnSettingsFileLoadAction;
-        public Action OnSettingsFileSaveAction;
 
         public void Setup(SettingsManagerFileSaveLoad saveLoad, SettingsManagerFileSaveLoad.SettingType settingType, ScriptableObject currentSettings, ScriptableObject defaultSettings, ScriptableObject temporarySettings)
         {
@@ -29,39 +26,53 @@ namespace SmugRag.Managers.Settings
             LoadSettingsFile();
         }
 
-        protected void SaveSettingsFile()
+        #region Settings File
+
+        private void SaveSettingsFile()
         {
             _saveLoadManager.SaveToJson(CurrentSettings, _settingType);
-
-            OnSettingsFileSaveAction?.Invoke();
         }
 
-        protected void LoadSettingsFile()
+        private void LoadSettingsFile()
         {
             //Default Settings, before trying to load save ones//
             SetNewSettings(CurrentSettings, _defaultSettings);
 
             _saveLoadManager.LoadFromJson(CurrentSettings, SettingsManagerFileSaveLoad.SettingType.Controls);
-
-            OnSettingsFileLoadAction?.Invoke();
         }
+
+        #endregion Settings File
 
         protected abstract void SetNewSettings(ScriptableObject targetSettingsData, ScriptableObject newSettingsData);
 
-        public abstract void EqualizeTemporarySettingsWithCurrent();
-
-        public abstract void SaveTemporarySettings();
-        
         public abstract bool HasUnsavedChanges();
 
-        protected void SubscribeToEvents()
+        private void EqualizeTemporarySettingsWithCurrent()
         {
-            _saveLoadManager.SettingsFilesRegenerationAction += SaveSettingsFile;
+            SetNewSettings(TemporarySettings, CurrentSettings);
+        }
+
+        public void ApplyTemporarySettings()
+        {
+            SetNewSettings(CurrentSettings, TemporarySettings);
+
+            SaveSettingsFile();
+        }
+
+        #region Events
+
+        private void SubscribeToEvents()
+        {
+            _saveLoadManager.OnSettingsFilesRegenerationAction += SaveSettingsFile;
+            _saveLoadManager.OnSettingsFileLoadAction += EqualizeTemporarySettingsWithCurrent;
         }
 
         public void UnsubscribeFromEvents()
         {
-            _saveLoadManager.SettingsFilesRegenerationAction -= SaveSettingsFile;
+            _saveLoadManager.OnSettingsFilesRegenerationAction -= SaveSettingsFile;
+            _saveLoadManager.OnSettingsFileLoadAction -= EqualizeTemporarySettingsWithCurrent;
         }
+
+        #endregion Events
     }
 }

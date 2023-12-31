@@ -9,8 +9,12 @@ namespace SmugRag.Managers.Settings
     {
         private string _settingsDirectoryPath;
         
+
+        
         //Action causes all settings manager scripts to regenerate setting files//
-        public Action SettingsFilesRegenerationAction;
+        public Action OnSettingsFilesRegenerationAction;
+        public Action OnSettingsFileLoadAction;
+        public Action OnSettingsFileSaveAction;
 
         public enum SettingType
         {
@@ -48,7 +52,7 @@ namespace SmugRag.Managers.Settings
                 Directory.CreateDirectory(_settingsDirectoryPath);
 
                 //Generate new setting files//
-                SettingsFilesRegenerationAction?.Invoke();
+                OnSettingsFilesRegenerationAction?.Invoke();
             }
         }
 
@@ -61,6 +65,8 @@ namespace SmugRag.Managers.Settings
             string jsonData = JsonUtility.ToJson(scriptableObject, true);
 
             File.WriteAllText(finalPath, jsonData);
+            
+            OnSettingsFileSaveAction?.Invoke();
         }
 
         public void LoadFromJson(ScriptableObject scriptableObject, SettingType settingType)
@@ -80,11 +86,13 @@ namespace SmugRag.Managers.Settings
                 Debug.LogError("Cannot load settings - " + settingType + " | Regenerating Settings Files!");
 
                 //Recreate setting files//
-                SettingsFilesRegenerationAction?.Invoke();
+                OnSettingsFilesRegenerationAction?.Invoke();
                 
                 Console.WriteLine(e);
                 throw;
             }
+            
+            OnSettingsFileLoadAction?.Invoke();
         }
     }
 }

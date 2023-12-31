@@ -11,23 +11,11 @@ namespace SmugRag.Managers.Settings
             SettingsControlsScriptableObject newSettings = (SettingsControlsScriptableObject)newSettingsData;
             SettingsControlsScriptableObject targetSettings = (SettingsControlsScriptableObject)targetSettingsData;
 
-            targetSettings.lookSensitivityGeneral = newSettings.lookSensitivityGeneral;
-            targetSettings.lookUseSeparateSensitivityAxes = newSettings.lookUseSeparateSensitivityAxes;
-            targetSettings.lookSensitivitySeparateAxesX = newSettings.lookSensitivitySeparateAxesX;
-            targetSettings.lookSensitivitySeparateAxesY = newSettings.lookSensitivitySeparateAxesY;
-            targetSettings.lookInvertYAxis = newSettings.lookInvertYAxis;
-        }
-
-        public override void EqualizeTemporarySettingsWithCurrent()
-        {
-            SetNewSettings(TemporarySettings, CurrentSettings);
-        }
-
-        public override void SaveTemporarySettings()
-        {
-            SetNewSettings(CurrentSettings, TemporarySettings);
-            
-            SaveSettingsFile();
+            ApplyChange_LookSensitivityGeneral(targetSettings, newSettings.lookSensitivityGeneral);
+            ApplyChange_LookUseSeparateSensitivityAxes(targetSettings, newSettings.lookUseSeparateSensitivityAxes);
+            ApplyChange_LookSensitivitySeparateAxisX(targetSettings, newSettings.lookSensitivitySeparateAxesX);
+            ApplyChange_LookSensitivitySeparateAxisY(targetSettings, newSettings.lookSensitivitySeparateAxesY);
+            ApplyChange_LookInvertYAxis(targetSettings, newSettings.lookInvertYAxis);
         }
 
         public override bool HasUnsavedChanges()
@@ -66,5 +54,34 @@ namespace SmugRag.Managers.Settings
 
             return false;
         }
+        
+        #region Setting Change Methodes
+
+        public void ApplyChange_LookSensitivityGeneral(SettingsControlsScriptableObject targetSettings, float newValue)
+        {
+            targetSettings.lookSensitivityGeneral = Mathf.Clamp(newValue, 0, 100);
+        }
+
+        public void ApplyChange_LookUseSeparateSensitivityAxes(SettingsControlsScriptableObject targetSettings, bool newValue)
+        {
+            targetSettings.lookUseSeparateSensitivityAxes = newValue;
+        }
+
+        public void ApplyChange_LookSensitivitySeparateAxisX(SettingsControlsScriptableObject targetSettings, float newValue)
+        {
+            targetSettings.lookSensitivitySeparateAxesX = Mathf.Clamp(newValue, 0, 100);
+        }
+
+        public void ApplyChange_LookSensitivitySeparateAxisY(SettingsControlsScriptableObject targetSettings, float newValue)
+        {
+            targetSettings.lookSensitivitySeparateAxesY = Mathf.Clamp(newValue, 0, 100);
+        }
+
+        public void ApplyChange_LookInvertYAxis(SettingsControlsScriptableObject targetSettings, bool newValue)
+        {
+            targetSettings.lookInvertYAxis = newValue;
+        }
+
+        #endregion Setting Change Methodes
     }
 }

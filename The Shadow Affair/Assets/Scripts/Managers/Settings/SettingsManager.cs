@@ -23,7 +23,6 @@ namespace SmugRag.Managers.Settings
 
         private SettingsManagerFileSaveLoad _fileSaveLoadManager;
         private SettingsManagerControls _controlsManager;
-        public SettingsManagerControlsSettingsChanger ControlsManagerSettingsChanger { get; private set; }
 
         #region Setup
 
@@ -41,9 +40,7 @@ namespace SmugRag.Managers.Settings
 
             //Controls//
             _controlsManager = new SettingsManagerControls();
-            ControlsManagerSettingsChanger = new SettingsManagerControlsSettingsChanger();
             _controlsManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Controls, CurrentSettings.Controls, defaultSettings.Controls, temporarySettings.Controls);
-            ControlsManagerSettingsChanger.Setup(_controlsManager, temporarySettings.Controls);
         }
 
         #endregion Setup
@@ -58,7 +55,6 @@ namespace SmugRag.Managers.Settings
         private void UnsubscribeManagersActions()
         {
             _controlsManager.UnsubscribeFromEvents();
-            ControlsManagerSettingsChanger.UnsubscribeFromEvents();
         }
 
         #endregion OnDisable

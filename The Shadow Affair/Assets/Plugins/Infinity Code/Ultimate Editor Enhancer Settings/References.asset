@@ -14,281 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _backgroundRules: []
   _bookmarks: []
-  _emptyInspectorItems:
-  - title: Ultimate Editor Enhancer
-    enabled: 1
-    items:
-    - title: Bookmarks
-      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Bookmarks
-      enabled: 1
-    - title: Distance Tool
-      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Distance Tool
-      enabled: 1
-    - title: View Gallery
-      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/View Gallery
-      enabled: 1
-    - title: Documentation
-      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Documentation
-      enabled: 1
-    - title: Settings
-      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Settings
-      enabled: 1
-  - title: Settings
-    enabled: 1
-    items:
-    - title: Project Settings
-      menuPath: Edit/Project Settings...
-      enabled: 1
-    - title: Preferences
-      menuPath: Edit/Preferences...
-      enabled: 1
-    - title: Shortcuts
-      menuPath: Edit/Shortcuts...
-      enabled: 1
-  - title: Packages
-    enabled: 1
-    items:
-    - title: Import Custom Package
-      menuPath: Assets/Import Package/Custom Package...
-      enabled: 1
-    - title: Package Manager
-      menuPath: Window/Package Manager
-      enabled: 1
-  - title: Text
-    enabled: 1
-    items:
-    - title: Font Asset Creator
-      menuPath: Window/Text/Font Asset Creator
-      enabled: 1
-    - title: Sprite Importer
-      menuPath: Window/Text/Sprite Importer
-      enabled: 1
-  - title: TextMeshPro
-    enabled: 1
-    items:
-    - title: Font Asset Creator
-      menuPath: Window/TextMeshPro/Font Asset Creator
-      enabled: 1
-    - title: Sprite Importer
-      menuPath: Window/TextMeshPro/Sprite Importer
-      enabled: 1
-    - title: Import TMP Essential Resources
-      menuPath: Window/TextMeshPro/Import TMP Essential Resources
-      enabled: 1
-    - title: Import TMP Examples and Extras
-      menuPath: Window/TextMeshPro/Import TMP Examples and Extras
-      enabled: 1
-    - title: Project Files GUID Remapping Tool
-      menuPath: Window/TextMeshPro/Project Files GUID Remapping Tool
-      enabled: 1
-    - title: Project Text Spacing Conversion Tool
-      menuPath: Window/TextMeshPro/Project Text Spacing Conversion Tool
-      enabled: 1
-  - title: General
-    enabled: 1
-    items:
-    - title: Scene
-      menuPath: Window/General/Scene
-      enabled: 1
-    - title: Game
-      menuPath: Window/General/Game
-      enabled: 1
-    - title: Inspector
-      menuPath: Window/General/Inspector
-      enabled: 1
-    - title: Hierarchy
-      menuPath: Window/General/Hierarchy
-      enabled: 1
-    - title: Project
-      menuPath: Window/General/Project
-      enabled: 1
-    - title: Console
-      menuPath: Window/General/Console
-      enabled: 1
-    - title: Progress
-      menuPath: Window/General/Progress
-      enabled: 1
-    - title: Test Runner
-      menuPath: Window/General/Test Runner
-      enabled: 1
-    - title: Services
-      menuPath: Window/General/Services
-      enabled: 1
-    - title: Device Simulator
-      menuPath: Window/General/Device Simulator
-      enabled: 1
-  - title: Rendering
-    enabled: 1
-    items:
-    - title: Lighting
-      menuPath: Window/Rendering/Lighting
-      enabled: 1
-    - title: Light Explorer
-      menuPath: Window/Rendering/Light Explorer
-      enabled: 1
-    - title: Occlusion Culling
-      menuPath: Window/Rendering/Occlusion Culling
-      enabled: 1
-    - title: HDRP Wizard
-      menuPath: Window/Rendering/HDRP Wizard
-      enabled: 1
-    - title: Look Dev
-      menuPath: Window/Rendering/Look Dev
-      enabled: 1
-    - title: Graphics Compositor
-      menuPath: Window/Rendering/Graphics Compositor
-      enabled: 1
-  - title: Animation
-    enabled: 1
-    items:
-    - title: Animation
-      menuPath: Window/Animation/Animation
-      enabled: 1
-    - title: Animator
-      menuPath: Window/Animation/Animator
-      enabled: 1
-    - title: Animator Parameter
-      menuPath: Window/Animation/Animator Parameter
-      enabled: 1
-  - title: Audio
-    enabled: 1
-    items:
-    - title: Audio Random Container
-      menuPath: Window/Audio/Audio Random Container
-      enabled: 1
-    - title: Audio Mixer
-      menuPath: Window/Audio/Audio Mixer
-      enabled: 1
-  - title: Sequencing
-    enabled: 1
-    items:
-    - title: Timeline
-      menuPath: Window/Sequencing/Timeline
-      enabled: 1
-    - title: Sequence Assembly
-      menuPath: Window/Sequencing/Sequence Assembly
-      enabled: 1
-    - title: Sequence Assets
-      menuPath: Window/Sequencing/Sequence Assets
-      enabled: 1
-    - title: Sequences
-      menuPath: Window/Sequencing/Sequences
-      enabled: 1
-  - title: Analysis
-    enabled: 1
-    items:
-    - title: Profiler
-      menuPath: Window/Analysis/Profiler
-      enabled: 1
-    - title: Profiler (Standalone Process)
-      menuPath: Window/Analysis/Profiler (Standalone Process)
-      enabled: 1
-    - title: Memory Profiler
-      menuPath: Window/Analysis/Memory Profiler
-      enabled: 1
-    - title: Frame Debugger
-      menuPath: Window/Analysis/Frame Debugger
-      enabled: 1
-    - title: Physics Debugger
-      menuPath: Window/Analysis/Physics Debugger
-      enabled: 1
-    - title: Code Coverage
-      menuPath: Window/Analysis/Code Coverage
-      enabled: 1
-    - title: Import Activity
-      menuPath: Window/Analysis/Import Activity
-      enabled: 1
-    - title: Profile Analyzer
-      menuPath: Window/Analysis/Profile Analyzer
-      enabled: 1
-    - title: Performance Markers
-      menuPath: Window/Analysis/Performance Markers
-      enabled: 1
-    - title: Input Debugger
-      menuPath: Window/Analysis/Input Debugger
-      enabled: 1
-    - title: Rendering Debugger
-      menuPath: Window/Analysis/Rendering Debugger
-      enabled: 1
-    - title: Render Graph Viewer
-      menuPath: Window/Analysis/Render Graph Viewer
-      enabled: 1
-    - title: IMGUI Debugger
-      menuPath: Window/Analysis/IMGUI Debugger
-      enabled: 1
-  - title: Accessibility
-    enabled: 1
-    items:
-    - title: Hierarchy Viewer
-      menuPath: Window/Accessibility/Hierarchy Viewer
-      enabled: 1
-  - title: AI
-    enabled: 1
-    items:
-    - title: Navigation
-      menuPath: Window/AI/Navigation
-      enabled: 1
-    - title: NavMesh Updater
-      menuPath: Window/AI/NavMesh Updater
-      enabled: 1
-  - title: Visual Effects
-    enabled: 1
-    items:
-    - title: Visual Effect Graph
-      menuPath: Window/Visual Effects/Visual Effect Graph
-      enabled: 1
-  - title: UI Toolkit
-    enabled: 1
-    items:
-    - title: UI Builder
-      menuPath: Window/UI Toolkit/UI Builder
-      enabled: 1
-    - title: Samples
-      menuPath: Window/UI Toolkit/Samples
-      enabled: 1
-    - title: Debugger
-      menuPath: Window/UI Toolkit/Debugger
-      enabled: 1
-  - title: Terrain
-    enabled: 1
-    items:
-    - title: Terrain Toolbox
-      menuPath: Window/Terrain/Terrain Toolbox
-      enabled: 1
-    - title: Edit Noise
-      menuPath: Window/Terrain/Edit Noise
-      enabled: 1
+  _emptyInspectorItems: []
   _favoriteWindows: []
   _headerRules:
   - enabled: 1
-    condition: 2
+    condition: 0
     value: --Game Managers
     trimChars: -=
-    backgroundColor: {r: 0.6509434, g: 0, b: 0, a: 1}
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-    textAlign: 1
-    textStyle: 1
-  - enabled: 1
-    condition: 2
-    value: --Player
-    trimChars: -=
-    backgroundColor: {r: 0.7830189, g: 0.26016346, b: 0, a: 1}
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-    textAlign: 1
-    textStyle: 1
-  - enabled: 1
-    condition: 2
-    value: --Enviroment
-    trimChars: -=
-    backgroundColor: {r: 0.056818802, g: 0.4245283, b: 0, a: 1}
+    backgroundColor: {r: 0.6698113, g: 0.085916646, b: 0.05371129, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
     textAlign: 1
     textStyle: 1
   - enabled: 1
     condition: 0
-    value: --
+    value: --UI
     trimChars: -=
-    backgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    backgroundColor: {r: 1, g: 0.6341173, b: 0, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlign: 1
+    textStyle: 1
+  - enabled: 1
+    condition: 0
+    value: --Player
+    trimChars: -=
+    backgroundColor: {r: 0.8679245, g: 0.26492798, b: 0.020469915, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    textAlign: 1
+    textStyle: 1
+  - enabled: 1
+    condition: 0
+    value: --Enviroment
+    trimChars: -=
+    backgroundColor: {r: 0.28627452, g: 0.6117647, b: 0.039215688, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
     textAlign: 1
     textStyle: 1
@@ -471,112 +228,112 @@ MonoBehaviour:
   _projectFolderIcons:
   - folderName: Addons|Assemblies|Extensions|Library|Libraries|Packages|Plugins
     icon: Assembly Icon
-    color: {r: 0.5754717, g: 0.25601724, b: 0, a: 1}
+    color: {r: 0.5283019, g: 0.34339622, b: 0, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Android
     icon: BuildSettings.Android
-    color: {r: 0.9725491, g: 0.9725491, b: 1, a: 1}
+    color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Animation|Animations
     icon: AnimationClip Icon
-    color: {r: 0.08770915, g: 0.23795167, b: 0.6886792, a: 1}
+    color: {r: 0.1699448, g: 0.28435582, b: 0.6320754, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Animator
     icon: Animator Icon
-    color: {r: 0, g: 0.23156087, b: 0.4245283, a: 1}
+    color: {r: 0.16862746, g: 0.28627452, b: 0.6313726, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Audio|Music|Sound|Sounds|SFX
     icon: AudioSource Gizmo
-    color: {r: 0.7803922, g: 0.08235294, b: 0.52156866, a: 1}
+    color: {r: 0.5568628, g: 0, b: 0.3529412, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Camera|Cameras
     icon: Camera Gizmo
-    color: {r: 0, g: 0.46226418, b: 0.20379391, a: 1}
+    color: {r: 0.085751146, g: 0.4433962, b: 0.24342264, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Characters
     icon: Avatar Icon
-    color: {r: 0, g: 0.32503143, b: 0.6415094, a: 1}
+    color: {r: 0.16862746, g: 0.28627452, b: 0.6313726, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Demo|Demos|Example|Examples|Sample|Samples
-    icon: UnityLogo
-    color: {r: 0.5764706, g: 0.25882354, b: 0, a: 1}
+    icon: CanvasGroup Icon
+    color: {r: 0.6792453, g: 0.13974315, b: 0.041651852, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Docs|Documentation|Tutorial|Tutorials
     icon: console.infoicon
-    color: {r: 0.6320754, g: 0.40899, b: 0, a: 1}
+    color: {r: 0.7075472, g: 0.45782468, b: 0, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Editor|Extensions
     icon: TextAsset Icon
-    color: {r: 0, g: 0.54876494, b: 0.6132076, a: 1}
+    color: {r: 0.055268783, g: 0.4250518, b: 0.4339623, a: 1}
     rootOnly: 0
     recursive: 1
-  - folderName: Effects|VisualEffect|VisualEffects|VFX
+  - folderName: Effects|VisualEffect|VisualEffects|VFX|VFXs
     icon: VisualEffect Gizmo
-    color: {r: 0.5754717, g: 0.019001435, b: 0.20102434, a: 1}
+    color: {r: 0.4716981, g: 0.042274818, b: 0.20680614, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Font|Fonts
     icon: Font Icon
-    color: {r: 0.735849, g: 0.3961813, b: 0.06594872, a: 1}
+    color: {r: 0.6509434, g: 0.36697927, b: 0.095185116, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: GUI|UI
     icon: GUILayer Icon
-    color: {r: 0.4716981, g: 0.1980242, b: 0.1980242, a: 1}
+    color: {r: 0.116767526, g: 0.4077062, b: 0.6037736, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Icons|Images|Textures
     icon: Texture Icon
-    color: {r: 0.4339623, g: 0.1808176, b: 0, a: 1}
+    color: {r: 0.4528302, g: 0.25010026, b: 0.10466359, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Input|InputSystem
     icon: StandaloneInputModule Icon
-    color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Mats|Materials
     icon: Material Icon
-    color: {r: 0.20438251, g: 0.1496529, b: 0.5377358, a: 1}
+    color: {r: 0.19346216, g: 0.15045391, b: 0.46226418, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Mesh|Meshes
     icon: AudioReverbFilter Icon
-    color: {r: 0.5754717, g: 0.07329121, b: 0.07329121, a: 1}
+    color: {r: 0.5566038, g: 0.112896055, b: 0.112896055, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Model|Models
     icon: Mesh Icon
-    color: {r: 0.6226415, g: 0.044054817, b: 0.15977204, a: 1}
+    color: {r: 0.5188679, g: 0.070977226, b: 0.16055527, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Particles
     icon: ParticleSystem Icon
-    color: {r: 0.5943396, g: 0.11494303, b: 0.35464132, a: 1}
+    color: {r: 0.509434, g: 0.05526879, b: 0.4011177, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Physics|PhysicsMaterials|Physics Materials
     icon: PhysicMaterial Icon
-    color: {r: 0.065859735, g: 0.3773585, b: 0.20459445, a: 1}
+    color: {r: 0.08139017, g: 0.2924528, b: 0.17539284, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: PostProcessing
     icon: VisualEffectAsset Icon
-    color: {r: 0.7075472, g: 0, b: 0.3823764, a: 1}
+    color: {r: 0.5377358, g: 0.06848522, b: 0.3658976, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Prefab|Prefabs|_Prefabs
     icon: Prefab Icon
-    color: {r: 0, g: 0.3207547, b: 0, a: 1}
+    color: {r: 0.0540337, g: 0.3679245, b: 0, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Presets
@@ -586,37 +343,37 @@ MonoBehaviour:
     recursive: 1
   - folderName: RenderTexture|RenderTextures
     icon: RenderTexture Icon
-    color: {r: 0.4398274, g: 0.08966714, b: 0.6132076, a: 1}
+    color: {r: 0.32969606, g: 0.13817194, b: 0.4245283, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Resources|StreamingAssets
     icon: BlendTree Icon
-    color: {r: 0.5764706, g: 0.25882354, b: 0, a: 1}
+    color: {r: 0.5754717, g: 0.2809335, b: 0.019001435, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Rigs
     icon: CharacterJoint Icon
-    color: {r: 0, g: 0.4310396, b: 0.5754717, a: 1}
+    color: {r: 0.11120505, g: 0.34608635, b: 0.46226418, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Runtime|Script|Scripts
     icon: cs Script Icon
-    color: {r: 0, g: 0.61132693, b: 0.745283, a: 1}
+    color: {r: 0.130162, g: 0.45749846, b: 0.7075472, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Scene|Scenes
     icon: UnityLogo
-    color: {r: 0, g: 0.33962262, b: 0, a: 1}
+    color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Scene Nav
     icon: NavMeshData Icon
-    color: {r: 0, g: 0.4528302, b: 0, a: 1}
+    color: {r: 0.05549129, g: 0.4056604, b: 0.18926373, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: ScriptableObjects
     icon: ScriptableObject Icon
-    color: {r: 0, g: 0.39807668, b: 0.6603774, a: 1}
+    color: {r: 0.03586687, g: 0.33466342, b: 0.5849056, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Settings
@@ -626,27 +383,27 @@ MonoBehaviour:
     recursive: 1
   - folderName: Shader|Shaders
     icon: Shader Icon
-    color: {r: 0.050062295, g: 0.7075472, b: 0.38745582, a: 1}
+    color: {r: 0.027367389, g: 0.38679248, b: 0.26472354, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Skybox
     icon: DirectionalLight Gizmo
-    color: {r: 0.8490566, g: 0.6071211, b: 0, a: 1}
+    color: {r: 0.6226415, g: 0.56181437, b: 0.09692062, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: SpriteAtlases
     icon: SpriteAtlas Icon
-    color: {r: 0.5019608, g: 0, b: 0, a: 1}
+    color: {r: 0.5660378, g: 0.09878961, b: 0.09878961, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Sprites
     icon: Sprite Icon
-    color: {r: 0.5849056, g: 0.057938762, b: 0.057938762, a: 1}
+    color: {r: 0.5849056, g: 0.09656459, b: 0.09656459, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Stamps
     icon: TerrainInspector.TerrainToolSetheight On
-    color: {r: 0.28086475, g: 0.21800463, b: 0.6698113, a: 1}
+    color: {r: 0.251433, g: 0.19081523, b: 0.6037736, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Stylesheets
@@ -656,12 +413,27 @@ MonoBehaviour:
     recursive: 1
   - folderName: Terrain|Terrains
     icon: Terrain Icon
-    color: {r: 0.7830189, g: 0.16620687, b: 0.16620687, a: 1}
+    color: {r: 0.4811321, g: 0.13843894, b: 0.13843894, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Video|Videos
     icon: VideoPlayer Icon
-    color: {r: 0.4322953, g: 0.23887502, b: 0.8301887, a: 1}
+    color: {r: 0.36199063, g: 0.24007654, b: 0.6132076, a: 1}
+    rootOnly: 0
+    recursive: 1
+  - folderName: Graphics
+    icon: Tilemap Icon
+    color: {r: 0.5188679, g: 0.06608224, b: 0.45525342, a: 1}
+    rootOnly: 0
+    recursive: 1
+  - folderName: _Objects
+    icon: BoxCollider Icon
+    color: {r: 0.5188679, g: 0.30364174, b: 0.056292284, a: 1}
+    rootOnly: 0
+    recursive: 1
+  - folderName: '[HDRP]'
+    icon: BuildSettings.Standalone
+    color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: '[General]'
@@ -669,27 +441,19 @@ MonoBehaviour:
     color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
     rootOnly: 0
     recursive: 1
-  - folderName: '[HDRP]'
-    icon: BuildSettings.Standalone
-    color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
+  - folderName: 3rd-Party
+    icon: ProceduralMaterial Icon
+    color: {r: 0.4339623, g: 0.0627853, b: 0.026610907, a: 1}
     rootOnly: 0
     recursive: 1
-  - folderName: Graphics
-    icon: d_FreeformLayoutGroup Icon
-    color: {r: 0.6603774, g: 0.08410467, b: 0.4223536, a: 1}
-    rootOnly: 0
-    recursive: 1
-  - folderName: 3rd-party
-    icon: AssetStore Icon
-    color: {r: 0.4339623, g: 0.3196023, b: 0.04298683, a: 1}
-    rootOnly: 0
-    recursive: 1
-  - folderName: _Objects
-    icon: LODGroup Icon
-    color: {r: 0.8396226, g: 0.37574372, b: 0.027723404, a: 1}
+  - folderName: Lightings
+    icon: Light Icon
+    color: {r: 0.6226415, g: 0.27200487, b: 0, a: 1}
     rootOnly: 0
     recursive: 1
   _sceneHistory:
   - name: GeneralTest
     path: Assets/Scenes/Development/Tests/GeneralTest.unity
+  - name: GeneralTests
+    path: Assets/Scenes/_Development/_Tests/GeneralTests.unity
   _notes: []
