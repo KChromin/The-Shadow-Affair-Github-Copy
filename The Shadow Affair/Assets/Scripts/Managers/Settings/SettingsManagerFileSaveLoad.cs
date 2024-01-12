@@ -9,12 +9,10 @@ namespace SmugRag.Managers.Settings
     {
         private string _settingsDirectoryPath;
         
-
-        
         //Action causes all settings manager scripts to regenerate setting files//
-        public Action OnSettingsFilesRegenerationAction;
-        public Action OnSettingsFileLoadAction;
-        public Action OnSettingsFileSaveAction;
+        public event Action OnSettingsFilesRegenerationAction;
+        public event Action OnSettingsFileLoadAction;
+        public event Action OnSettingsFileSaveAction;
 
         public enum SettingType
         {

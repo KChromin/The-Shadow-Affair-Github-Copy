@@ -6,6 +6,6 @@ namespace SmugRag.Templates.StateMachines
 {
     public abstract class StateContext
     {
-        public StateBase currentState { get; set; }
+        public StateBase CurrentState { get; set; }
     }
 }

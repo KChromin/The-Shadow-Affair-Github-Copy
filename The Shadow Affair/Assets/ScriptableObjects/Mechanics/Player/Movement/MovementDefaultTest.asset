@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cfa4e748b10a44993a5a9656265a02, type: 3}
+  m_Name: MovementDefaultTest
+  m_EditorClassIdentifier: 
+  checkerParameters:
+    groundLayers:
+      serializedVersion: 2
+      m_Bits: 55
+    groundCheckDistance: 1.82
+    groundCheckRadius: 1
+    slopeCheck: 0
+    debugGizmos:
+      groundCheck: 1
+      groundCheckRayColor: {r: 1, g: 0, b: 0, a: 1}
+      groundCheckRayColorHit: {r: 0, g: 1, b: 0, a: 1}
+      groundCheckSphereColor: {r: 1, g: 0, b: 0, a: 1}
+      groundCheckSphereColorHit: {r: 0, g: 1, b: 0, a: 1}
+      slopeCheck: 0
+      cellingCheck: 0

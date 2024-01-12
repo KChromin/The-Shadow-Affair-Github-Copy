@@ -1,16 +1,18 @@
+using UnityEngine;
+
 namespace SmugRag.Templates.StateMachines
 {
     public abstract class StateBase
     {
         protected StateBase(StateContext currentContext, StateFactory stateFactory)
         {
-            context = currentContext;
-            statesFactory = stateFactory;
+            Context = currentContext;
+            StatesFactory = stateFactory;
         }
-        
+
         //Context and factory//
-        protected StateContext context { get; set; }
-        protected StateFactory statesFactory { get; set; }
+        protected StateContext Context { get; set; }
+        protected StateFactory StatesFactory { get; set; }
 
         //When Entering State//
         protected abstract void EnterState();
@@ -71,9 +73,9 @@ namespace SmugRag.Templates.StateMachines
             ExitStates();
 
             //Set new root//
-            context.currentState = newState;
+            Context.CurrentState = newState;
             //Enter new state//
-            context.currentState.EnterStates();
+            Context.CurrentState.EnterStates();
         }
     }
 }

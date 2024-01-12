@@ -68,9 +68,9 @@ namespace SmugRag.Templates.StateMachines
             if (isRootState)
             {
                 //Set new root//
-                context.currentState = newState;
+                Context.CurrentState = newState;
                 //Enter new state//
-                context.currentState.EnterStates();
+                Context.CurrentState.EnterStates();
             }
             else
             {

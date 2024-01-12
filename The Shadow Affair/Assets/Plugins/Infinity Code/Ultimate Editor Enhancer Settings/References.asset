@@ -14,7 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _backgroundRules: []
   _bookmarks: []
-  _emptyInspectorItems: []
+  _emptyInspectorItems:
+  - title: Ultimate Editor Enhancer
+    enabled: 1
+    items:
+    - title: Bookmarks
+      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Bookmarks
+      enabled: 1
+    - title: Distance Tool
+      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Distance Tool
+      enabled: 1
+    - title: View Gallery
+      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/View Gallery
+      enabled: 1
+    - title: Documentation
+      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Documentation
+      enabled: 1
+    - title: Settings
+      menuPath: Tools/Infinity Code/Ultimate Editor Enhancer/Settings
+      enabled: 1
+  - title: Settings
+    enabled: 1
+    items:
+    - title: Project Settings
+      menuPath: Edit/Project Settings...
+      enabled: 1
+    - title: Preferences
+      menuPath: Edit/Preferences...
+      enabled: 1
+    - title: Shortcuts
+      menuPath: Edit/Shortcuts...
+      enabled: 1
+  - title: Packages
+    enabled: 1
+    items:
+    - title: Import Custom Package
+      menuPath: Assets/Import Package/Custom Package...
+      enabled: 1
   _favoriteWindows: []
   _headerRules:
   - enabled: 1
@@ -228,7 +264,7 @@ MonoBehaviour:
   _projectFolderIcons:
   - folderName: Addons|Assemblies|Extensions|Library|Libraries|Packages|Plugins
     icon: Assembly Icon
-    color: {r: 0.5283019, g: 0.34339622, b: 0, a: 1}
+    color: {r: 0.5294118, g: 0.34509805, b: 0, a: 1}
     rootOnly: 0
     recursive: 1
   - folderName: Android
@@ -371,7 +407,7 @@ MonoBehaviour:
     color: {r: 0.05549129, g: 0.4056604, b: 0.18926373, a: 1}
     rootOnly: 0
     recursive: 1
-  - folderName: ScriptableObjects
+  - folderName: ScriptableObjects|ScriptableObject
     icon: ScriptableObject Icon
     color: {r: 0.03586687, g: 0.33466342, b: 0.5849056, a: 1}
     rootOnly: 0
@@ -454,6 +490,4 @@ MonoBehaviour:
   _sceneHistory:
   - name: GeneralTest
     path: Assets/Scenes/Development/Tests/GeneralTest.unity
-  - name: GeneralTests
-    path: Assets/Scenes/_Development/_Tests/GeneralTests.unity
   _notes: []
