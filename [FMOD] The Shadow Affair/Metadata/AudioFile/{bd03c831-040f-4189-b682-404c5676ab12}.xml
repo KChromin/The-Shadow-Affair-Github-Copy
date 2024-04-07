@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bd03c831-040f-4189-b682-404c5676ab12}">
+		<property name="assetPath">
+			<value>SFX/Player/Footsteps/Wood/Walk/ralphwhitehead__footsteps-walking-on-wooden-floor-medium-pace-10.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.78302083333333339</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{27e0664f-3dab-41da-8798-4da8ed25d478}</destination>
+		</relationship>
+	</object>
+</objects>

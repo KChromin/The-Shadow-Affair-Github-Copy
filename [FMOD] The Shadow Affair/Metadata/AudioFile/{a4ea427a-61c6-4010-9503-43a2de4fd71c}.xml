@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a4ea427a-61c6-4010-9503-43a2de4fd71c}">
+		<property name="assetPath">
+			<value>SFX/Player/Footsteps/Gravel/fission9__hiking-boot-footsteps-on-gravel - 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.42920833333333336</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{27e0664f-3dab-41da-8798-4da8ed25d478}</destination>
+		</relationship>
+	</object>
+</objects>

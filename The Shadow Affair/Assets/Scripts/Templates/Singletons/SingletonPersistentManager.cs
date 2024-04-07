@@ -17,8 +17,6 @@ namespace SmugRag.Templates.Singletons
                 Instance = this as T;
             }
 
-            DontDestroyOnLoad(gameObject);
-
             gameObject.transform.parent = GetManagerParent();
         }
 

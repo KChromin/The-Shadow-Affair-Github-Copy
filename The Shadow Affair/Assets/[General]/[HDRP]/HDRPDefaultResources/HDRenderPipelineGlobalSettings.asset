@@ -155,15 +155,22 @@ MonoBehaviour:
   apvScenesData:
     m_ObsoleteSerializedBakingSets: []
     sceneToBakingSet:
-      m_Keys: []
-      m_Values: []
-    bakingSets: []
+      m_Keys:
+      - 3abbdfc83bf71b642a5e1f2881bc0de1
+      m_Values:
+      - {fileID: 11400000, guid: e857b6ecd8ea16d4698ce036fc03efd6, type: 2}
+    bakingSets:
+    - {fileID: 11400000, guid: e857b6ecd8ea16d4698ce036fc03efd6, type: 2}
     sceneBounds:
-      m_Keys: []
-      m_Values: []
+      m_Keys:
+      - 3abbdfc83bf71b642a5e1f2881bc0de1
+      m_Values:
+      - m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 486, y: 243, z: 486}
     hasProbeVolumes:
-      m_Keys: []
-      m_Values: 
+      m_Keys:
+      - 3abbdfc83bf71b642a5e1f2881bc0de1
+      m_Values: 00
   m_Version: 10
   m_ShaderStrippingSetting:
     m_Version: 0

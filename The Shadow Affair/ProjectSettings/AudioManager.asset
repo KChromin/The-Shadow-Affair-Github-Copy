@@ -13,8 +13,8 @@ AudioManager:
   m_VirtualVoiceCount: 1
   m_RealVoiceCount: 1
   m_EnableOutputSuspension: 0
-  m_SpatializerPlugin: 
-  m_AmbisonicDecoderPlugin: 
+  m_SpatializerPlugin: Steam Audio Spatializer
+  m_AmbisonicDecoderPlugin: Steam Audio Ambisonic Decoder
   m_DisableAudio: 1
   m_VirtualizeEffects: 0
   m_RequestedDSPBufferSize: 1024

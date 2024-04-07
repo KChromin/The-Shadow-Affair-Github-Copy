@@ -12,7 +12,9 @@ namespace SmugRag.Managers.Settings
         private SettingsManagerFileSaveLoad _saveLoadManager;
         private SettingsManagerFileSaveLoad.SettingType _settingType;
 
-        public void Setup(SettingsManagerFileSaveLoad saveLoad, SettingsManagerFileSaveLoad.SettingType settingType, ScriptableObject currentSettings, ScriptableObject defaultSettings, ScriptableObject temporarySettings)
+        protected SettingsManagerActions Actions;
+
+        public void Setup(SettingsManagerFileSaveLoad saveLoad, SettingsManagerFileSaveLoad.SettingType settingType, ScriptableObject currentSettings, ScriptableObject defaultSettings, ScriptableObject temporarySettings, SettingsManagerActions actionsManager)
         {
             _saveLoadManager = saveLoad;
             _settingType = settingType;
@@ -20,6 +22,9 @@ namespace SmugRag.Managers.Settings
             CurrentSettings = currentSettings;
             _defaultSettings = defaultSettings;
             TemporarySettings = temporarySettings;
+
+            Actions = actionsManager;
+
             SubscribeToEvents();
 
             //Try to load settings, or default them//
@@ -30,7 +35,7 @@ namespace SmugRag.Managers.Settings
 
         private void SaveSettingsFile()
         {
-            _saveLoadManager.SaveToJson(CurrentSettings, _settingType);
+            _saveLoadManager.SaveToFile();
         }
 
         private void LoadSettingsFile()
@@ -38,7 +43,7 @@ namespace SmugRag.Managers.Settings
             //Default Settings, before trying to load save ones//
             SetNewSettings(CurrentSettings, _defaultSettings);
 
-            _saveLoadManager.LoadFromJson(CurrentSettings, SettingsManagerFileSaveLoad.SettingType.Controls);
+            _saveLoadManager.LoadFromFile();
         }
 
         #endregion Settings File

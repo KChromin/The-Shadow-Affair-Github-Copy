@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 //This class operates creating, and loading json files from settings//
@@ -8,36 +10,44 @@ namespace SmugRag.Managers.Settings
     public class SettingsManagerFileSaveLoad
     {
         private string _settingsDirectoryPath;
-        
+
         //Action causes all settings manager scripts to regenerate setting files//
         public event Action OnSettingsFilesRegenerationAction;
         public event Action OnSettingsFileLoadAction;
         public event Action OnSettingsFileSaveAction;
 
+        private ScriptableObject[] _settingsObjects;
+
         public enum SettingType
         {
-            Controls,
-            Video,
+            Game,
+            Display,
             Graphics,
-            Audio
+            Audio,
+            Controls
         }
 
-        private static string SettingFileEnding(SettingType settingType)
+        public void Setup(ScriptableObject gameSettings, ScriptableObject displaySettings, ScriptableObject graphicsSettings, ScriptableObject audioSettings, ScriptableObject controlsSettings)
         {
-            string pathEnding = "/";
+            //Set all current settings ScriptableObjects//
+            _settingsObjects = new[] { gameSettings, displaySettings, graphicsSettings, audioSettings, controlsSettings };
+        }
 
-            pathEnding += settingType switch
+        private static string SettingsName(SettingType settingType)
+        {
+            string settingsName = "";
+
+            settingsName += settingType switch
             {
-                SettingType.Controls => "Controls",
-                SettingType.Video => "Video",
+                SettingType.Game => "Game",
+                SettingType.Display => "Display",
                 SettingType.Graphics => "Graphics",
                 SettingType.Audio => "Audio",
+                SettingType.Controls => "Controls",
                 _ => throw new ArgumentOutOfRangeException(nameof(settingType), settingType, null)
             };
 
-            pathEnding += ".json";
-
-            return pathEnding;
+            return settingsName;
         }
 
         private void SetDirectoryPath()
@@ -54,43 +64,73 @@ namespace SmugRag.Managers.Settings
             }
         }
 
-        public void SaveToJson(ScriptableObject scriptableObject, SettingType settingType)
+        public void LoadFromFile()
         {
             SetDirectoryPath();
 
-            string finalPath = _settingsDirectoryPath + SettingFileEnding(settingType);
+            string finalPath = _settingsDirectoryPath + "/" + "Settings.txt";
+            string rawConfigFile = File.ReadAllText(finalPath);
 
-            string jsonData = JsonUtility.ToJson(scriptableObject, true);
+            List<string> loadedJsonSettings = new List<string>();
 
-            File.WriteAllText(finalPath, jsonData);
-            
-            OnSettingsFileSaveAction?.Invoke();
-        }
+            //Load Json data//
+            foreach (Match match in Regex.Matches(rawConfigFile, @"\{[^}]*\}"))
+            {
+                loadedJsonSettings.Add(match.Value);
+            }
 
-        public void LoadFromJson(ScriptableObject scriptableObject, SettingType settingType)
-        {
-            SetDirectoryPath();
+            //When data is incomplete, regenerate//
+            if (loadedJsonSettings.Count != _settingsObjects.Length)
+            {
+                OnSettingsFilesRegenerationAction?.Invoke();
+                return;
+            }
 
-            string finalPath = _settingsDirectoryPath + SettingFileEnding(settingType);
-
-            //If cannot assign all values (f.e file is broken) or load, regenerate all files//
+            //Try to assign new settings//
             try
             {
-                string jsonData = File.ReadAllText(finalPath);
-                JsonUtility.FromJsonOverwrite(jsonData, scriptableObject);
+                for (int i = 0; i < _settingsObjects.Length; i++)
+                {
+                    JsonUtility.FromJsonOverwrite(loadedJsonSettings[i], _settingsObjects[i]);
+                }
             }
             catch (Exception e)
             {
-                Debug.LogError("Cannot load settings - " + settingType + " | Regenerating Settings Files!");
+                Debug.LogError("Cannot load settings" + " | Regenerating Settings Files!");
 
                 //Recreate setting files//
                 OnSettingsFilesRegenerationAction?.Invoke();
-                
+
                 Console.WriteLine(e);
                 throw;
             }
-            
+
             OnSettingsFileLoadAction?.Invoke();
+        }
+
+        public void SaveToFile()
+        {
+            //Path//
+            SetDirectoryPath();
+            string finalPath = _settingsDirectoryPath + "/" + "Settings.txt";
+
+            int settingsSaveIteration = 0;
+            string settingsInText = "[Settings Configuration]" + "\n\n";
+
+            foreach (ScriptableObject settings in _settingsObjects)
+            {
+                //Add Title//
+                settingsInText += SettingsName((SettingType)settingsSaveIteration) + "\n";
+
+                //Add Settings//
+                settingsInText += JsonUtility.ToJson(settings, true) + "\n\n";
+
+                settingsSaveIteration++;
+            }
+
+            File.WriteAllText(finalPath, settingsInText);
+
+            OnSettingsFileSaveAction?.Invoke();
         }
     }
 }

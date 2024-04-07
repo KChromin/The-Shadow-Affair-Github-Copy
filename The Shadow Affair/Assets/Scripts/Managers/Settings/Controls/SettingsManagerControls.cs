@@ -8,14 +8,17 @@ namespace SmugRag.Managers.Settings
     {
         protected override void SetNewSettings(ScriptableObject targetSettingsData, ScriptableObject newSettingsData)
         {
-            SettingsControlsScriptableObject newSettings = (SettingsControlsScriptableObject)newSettingsData;
             SettingsControlsScriptableObject targetSettings = (SettingsControlsScriptableObject)targetSettingsData;
+            SettingsControlsScriptableObject newSettings = (SettingsControlsScriptableObject)newSettingsData;
 
             ApplyChange_LookSensitivityGeneral(targetSettings, newSettings.lookSensitivityGeneral);
             ApplyChange_LookUseSeparateSensitivityAxes(targetSettings, newSettings.lookUseSeparateSensitivityAxes);
             ApplyChange_LookSensitivitySeparateAxisX(targetSettings, newSettings.lookSensitivitySeparateAxesX);
             ApplyChange_LookSensitivitySeparateAxisY(targetSettings, newSettings.lookSensitivitySeparateAxesY);
             ApplyChange_LookInvertYAxis(targetSettings, newSettings.lookInvertYAxis);
+            
+            //Invoke Settings Update Event//
+            Actions.InvokeOnSettingsApplyControls();
         }
 
         public override bool HasUnsavedChanges()

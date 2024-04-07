@@ -262,7 +262,7 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _projectFolderIcons:
-  - folderName: Addons|Assemblies|Extensions|Library|Libraries|Packages|Plugins
+  - folderName: Addons|Assemblies|Extensions|Library|Libraries|Packages|Plugins|AddressableAssetsData
     icon: Assembly Icon
     color: {r: 0.5294118, g: 0.34509805, b: 0, a: 1}
     rootOnly: 0
@@ -488,6 +488,10 @@ MonoBehaviour:
     rootOnly: 0
     recursive: 1
   _sceneHistory:
+  - name: CheapMenu
+    path: Assets/Scenes/Development/TemporaryMenu/CheapMenu.unity
   - name: GeneralTest
     path: Assets/Scenes/Development/Tests/GeneralTest.unity
+  - name: TemporaryMenu
+    path: Assets/Scenes/Development/TemporaryMenu/TemporaryMenu.unity
   _notes: []
