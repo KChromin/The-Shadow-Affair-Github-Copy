@@ -100,7 +100,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 EditorGUI.BeginDisabledGroup(!_unsafeFeatures);
 
-                DrawToggleField("Change Number Fields Value By Arrows", ref _changeNumberFieldValueByArrow, NumberFieldInterceptor.Refresh);
+                DrawToggleField("Change Number Fields Value By Arrows And Mouse Wheel", ref _changeNumberFieldValueByArrow, NumberFieldInterceptor.Refresh);
                 
                 _expandLongTextFields = EditorGUILayout.ToggleLeft("Expand Long Text Fields", _expandLongTextFields);
                 EditorGUI.indentLevel++;

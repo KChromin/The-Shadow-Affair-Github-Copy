@@ -197,6 +197,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             if (target == ExportItemIndex.everything) name += "Everything";
             else if (target == ExportItemIndex.bookmarks) name += "Bookmarks";
             else if (target == ExportItemIndex.favoriteWindows) name += "Favorite-Windows";
+            else if (target == ExportItemIndex.miniLayouts) name += "Mini-Layouts";
             else if (target == ExportItemIndex.quickAccessBar) name += "Quick-Access-Bar";
             else if (target == ExportItemIndex.hierarchyHeaders) name += "Hierarchy-Headers";
             else if (target == ExportItemIndex.emptyInspector) name += "Empty-Inspector";
@@ -205,14 +206,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             string filename = EditorUtility.SaveFilePanel("Export Items", EditorApplication.applicationPath, name, "json");
             if (string.IsNullOrEmpty(filename)) return;
 
-            JsonObject obj = new JsonObject();
-
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.bookmarks) obj.Add("bookmarks", Bookmarks.json);
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.favoriteWindows) obj.Add("favorite-windows", FavoriteWindowsManager.json);
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.quickAccessBar) obj.Add("quick-access-bar", QuickAccessBarManager.json);
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.hierarchyHeaders) obj.Add("hierarchy-headers", Header.json);
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.emptyInspector) obj.Add("empty-inspector", EmptyInspectorManager.json);
-            if (target == ExportItemIndex.everything || target == ExportItemIndex.projectIcons) obj.Add("project-icons", ProjectFolderIconManager.json);
+            JsonObject obj = GetExportJson(target);
 
             File.WriteAllText(filename, obj.ToString(), Encoding.UTF8);
         }
@@ -223,6 +217,21 @@ namespace InfinityCode.UltimateEditorEnhancer
             if (string.IsNullOrEmpty(filename)) return;
 
             File.WriteAllText(filename, GetSettings(), Encoding.UTF8);
+        }
+
+        private static JsonObject GetExportJson(ExportItemIndex target)
+        {
+            JsonObject obj = new JsonObject();
+
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.bookmarks) obj.Add("bookmarks", Bookmarks.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.favoriteWindows) obj.Add("favorite-windows", FavoriteWindowsManager.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.miniLayouts) obj.Add("mini-layouts", MiniLayoutsManager.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.quickAccessBar) obj.Add("quick-access-bar", QuickAccessBarManager.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.hierarchyHeaders) obj.Add("hierarchy-headers", Header.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.emptyInspector) obj.Add("empty-inspector", EmptyInspectorManager.json);
+            if (target == ExportItemIndex.everything || target == ExportItemIndex.projectIcons) obj.Add("project-icons", ProjectFolderIconManager.json);
+            
+            return obj;
         }
 
         private static FieldInfo GetField(FieldInfo[] fields, string key)
@@ -280,6 +289,9 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             JsonItem hrItem = json["hierarchy-headers"];
             if (hrItem != null) Header.json = hrItem as JsonArray;
+            
+            JsonItem mlItem = json["mini-layouts"];
+            if (mlItem != null) MiniLayoutsManager.json = mlItem as JsonArray;
 
             JsonItem eiItem = json["empty-inspector"];
             if (eiItem != null) EmptyInspectorManager.json = eiItem as JsonArray;
@@ -642,7 +654,8 @@ namespace InfinityCode.UltimateEditorEnhancer
             quickAccessBar = 2,
             hierarchyHeaders = 3,
             emptyInspector = 4,
-            projectIcons = 5
+            projectIcons = 5,
+            miniLayouts = 6
         }
     }
 }

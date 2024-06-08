@@ -312,7 +312,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             return wnd;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Timescale", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "Timescale", false, MenuItemOrder.Timescale)]
         public static void ShowWindow()
         {
             ShowWindow(false);

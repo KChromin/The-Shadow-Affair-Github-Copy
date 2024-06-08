@@ -1,16 +1,18 @@
 using UnityEngine;
 
-namespace SmugRag.ScriptableObjects.Settings
+namespace SmugRagGames.Managers.Settings
 {
-   [CreateAssetMenu(fileName = "SettingsGameScriptableObject", menuName = "ScriptableObjects/Settings/GameSettings")]
+    [CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/Settings/Game")]
+
     public class SettingsGameScriptableObject : ScriptableObject
     {
         [Header("Language")]
-        [Space]
+        [Range(0,1)]
         public short language = 0;
-        
+
         [Header("Head Bobbing")]
-        [Space]
-        public bool headBobbingDisabled = false;
+        public bool headBobbingDisable = false;
+        [Range(0,1f)]
+        public float headBobbingIntensity = 1f;
     }
 }

@@ -108,7 +108,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             EditorGUILayout.EndScrollView();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Notes", false, 101)]
+        [MenuItem(WindowsHelper.MenuPath + "Notes", false, MenuItemOrder.Notes)]
         public static NoteManager Open()
         {
             NoteManager window = GetWindow<NoteManager>("Notes", true);
@@ -125,7 +125,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             if (cachedNotes.TryGetValue(gameObject, out note)) return;
             
-            string gid = GlobalObjectId.GetGlobalObjectIdSlow(gameObject).ToString();
+            string gid = GlobalObjectIdHelper.GetGlobalObjectIdSlow(gameObject).ToString();
             note = ReferenceManager.notes.FirstOrDefault(n => n.gid == gid);
             if (note == null)
             {

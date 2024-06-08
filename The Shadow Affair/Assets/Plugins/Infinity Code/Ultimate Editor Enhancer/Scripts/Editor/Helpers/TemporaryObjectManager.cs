@@ -8,14 +8,14 @@ namespace InfinityCode.UltimateEditorEnhancer
 {
     public static class TemporaryObjectManager
     {
-        [MenuItem(WindowsHelper.MenuPath + "Temporary Objects/Create Container", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "Temporary Objects/Create Container", false, MenuItemOrder.TemporaryCreateContainer)]
         public static void CreateTemporaryContainer()
         {
             GameObject go = TemporaryContainer.GetContainer();
             Undo.RegisterCreatedObjectUndo(go, "Create Temporary Container");
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Temporary Objects/Destroy Container", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "Temporary Objects/Destroy Container", false, MenuItemOrder.TemporaryRemoveContainer)]
         public static void DestroyTemporaryContainer()
         {
             TemporaryContainer temporaryContainer = ObjectHelper.FindObjectOfType<TemporaryContainer>();

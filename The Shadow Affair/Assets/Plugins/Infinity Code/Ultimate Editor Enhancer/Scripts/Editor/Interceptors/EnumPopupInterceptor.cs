@@ -61,36 +61,45 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
         private static void ProcessKeyDown(Rect position, int controlID, int selected, GUIContent[] popupValues, Event e)
         {
             if (!MainActionKeyForControl(e, controlID)) return;
-            if (popupValues.Length < Prefs.searchInEnumFieldsMinValues) return;
-            if (HasSlashes(popupValues)) return;
+            if (!Validate(popupValues)) return;
             
-            if (Application.platform == RuntimePlatform.OSXEditor)
-            {
-                position.y = (float)(-19.0 + position.y - selected * 16);
-            }
-
-            object instance = Activator.CreateInstance(PopupCallbackInfoRef.type, controlID);
-            PopupCallbackInfoRef.SetInstance(instance);
-            FlatSelectorWindow.Show(position, popupValues, EditorGUI.showMixedValue ? -1 : selected).OnSelect += i => { PopupCallbackInfoRef.GetSetEnumValueDelegate(instance).Invoke(null, null, i); };
+            Show(position, controlID, selected, popupValues);
             e.Use();
         }
 
         private static void ProcessMouseDown(Rect position, int controlID, int selected, GUIContent[] popupValues, Event e)
         {
             if (e.button != 0 || !position.Contains(e.mousePosition)) return;
-            if (popupValues.Length < Prefs.searchInEnumFieldsMinValues) return;
-            if (HasSlashes(popupValues)) return;
+            if (!Validate(popupValues)) return;
             
+            Show(position, controlID, selected, popupValues);
+            GUIUtility.keyboardControl = controlID;
+            e.Use();
+        }
+
+        private static void Show(Rect position, int controlID, int selected, GUIContent[] popupValues)
+        {
             if (Application.platform == RuntimePlatform.OSXEditor)
             {
                 position.y = (float)(-19.0 + position.y - selected * 16);
             }
 
-            object instance = Activator.CreateInstance(PopupCallbackInfoRef.type, controlID);
-            PopupCallbackInfoRef.SetInstance(instance);
-            FlatSelectorWindow.Show(position, popupValues, EditorGUI.showMixedValue ? -1 : selected).OnSelect += i => { PopupCallbackInfoRef.GetSetEnumValueDelegate(instance).Invoke(null, null, i); };
-            GUIUtility.keyboardControl = controlID;
-            e.Use();
+            object popupInstance = Activator.CreateInstance(PopupCallbackInfoRef.type, controlID);
+            PopupCallbackInfoRef.SetInstance(popupInstance);
+            FlatSelectorWindow.Show(position, popupValues, EditorGUI.showMixedValue ? -1 : selected).OnSelect += i => { PopupCallbackInfoRef.GetSetEnumValueDelegate(popupInstance).Invoke(null, null, i); };
+        }
+
+        private static bool Validate(GUIContent[] popupValues)
+        {
+            if (popupValues.Length < Prefs.searchInEnumFieldsMinValues) return false;
+            if (HasSlashes(popupValues)) return false;
+            
+            EditorWindow focusedWindow = EditorWindow.focusedWindow;
+            if (focusedWindow != null)
+            {
+                if (focusedWindow.GetType().FullName == "UnityEditor.U2D.Sprites.SpriteEditorMenu") return false;
+            }
+            return true;
         }
     }
 }

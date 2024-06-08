@@ -227,6 +227,8 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
                     GUILayout.Space(item.intSettings[0]);
                     continue;
                 }
+                
+                if (!item.Visible(maximized)) continue;
 
                 if (item.type == QuickAccessItemType.action)
                 {
@@ -235,7 +237,6 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
                 }
 
                 if (item.content == null) continue;
-                if (!item.Visible(maximized)) continue;
                 visibleIndex++;
 
                 GUIStyle style = activeWindowIndex == index ? activeContentStyle : contentStyle;

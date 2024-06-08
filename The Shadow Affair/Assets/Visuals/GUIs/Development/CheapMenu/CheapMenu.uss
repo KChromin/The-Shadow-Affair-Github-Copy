@@ -1,0 +1,50 @@
+.menuButton {
+    flex-shrink: 0;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/stiff-brush-jk/stiffbrushjk.otf?fileID=12800000&guid=c32e5664fa5dc1642a749c2bda1c9f5a&type=3#stiffbrushjk");
+    color: rgb(255, 255, 255);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    background-color: rgba(142, 23, 23, 0.9);
+}
+
+.menuButton:hover {
+    flex-shrink: 0;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/stiff-brush-jk/stiffbrushjk.otf?fileID=12800000&guid=c32e5664fa5dc1642a749c2bda1c9f5a&type=3#stiffbrushjk");
+    color: rgb(255, 255, 255);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    background-color: rgba(118, 17, 17, 0.9);
+}
+
+.menuButton:active {
+    flex-shrink: 0;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    font-size: 40px;
+    -unity-font-definition: url("project://database/Assets/Visuals/Fonts/stiff-brush-jk/stiffbrushjk.otf?fileID=12800000&guid=c32e5664fa5dc1642a749c2bda1c9f5a&type=3#stiffbrushjk");
+    color: rgb(255, 255, 255);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    background-color: rgb(79, 0, 7);
+}

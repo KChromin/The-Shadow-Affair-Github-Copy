@@ -94,6 +94,13 @@
         "updated": 2.0
       },
       {
+        "title": "Scene Backups",
+        "image": "Scene Backups.png",
+        "help": "scene-backups",
+        "added": 3.15,
+        "updated": 3.15
+      },
+      {
         "title": "Smart Search",
         "image": "Smart Search.png",
         "help": "smart-search",
@@ -688,18 +695,25 @@
     "slides":
     [
       {
-        "title": "Switch Between Scene and Game Views",
-        "image": "Switcher.png",
-        "help": "switch-between-scene-and-game-views",
-        "added": 1.0,
-        "updated": 1.0
-      },
-      {
         "title": "Favorite Windows",
         "image": "Favorite Windows.png",
         "help": "favorite-windows-2",
         "added": 1.12,
         "updated": 1.12
+      },
+      {
+        "title": "Mini Layouts",
+        "image": "Mini Layouts.png",
+        "help": "mini-layouts",
+        "added": 3.15,
+        "updated": 3.15
+      },
+      {
+        "title": "Switch Between Scene and Game Views",
+        "image": "Switcher.png",
+        "help": "switch-between-scene-and-game-views",
+        "added": 1.0,
+        "updated": 1.0
       }
     ]
   },

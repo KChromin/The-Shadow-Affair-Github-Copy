@@ -102,6 +102,8 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus
         {
             if (!_isOpened || items == null) return;
 
+            if (WindowsHelper.IsFocusOnContextMenu()) return;
+
             bool lastOpened = _isOpened;
 
             _isOpened = false;

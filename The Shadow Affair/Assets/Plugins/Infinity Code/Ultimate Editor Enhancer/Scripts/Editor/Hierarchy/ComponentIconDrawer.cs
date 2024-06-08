@@ -164,8 +164,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             Event e = Event.current;
             Vector2 position = e.mousePosition;
             position.y = hierarchyRect.yMax;
-            if (EditorWindow.focusedWindow != null) position += EditorWindow.focusedWindow.position.position;
-            else position = HandleUtility.GUIPointToScreenPixelCoordinate(position);
+            position = WindowsHelper.GetMousePositionOnFocusedWindow(position);
 
             Vector2 size = Prefs.defaultWindowSize;
             Rect rect = new Rect(position + new Vector2(-size.x / 2, 36), size);
@@ -186,8 +185,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             Event e = Event.current;
             Vector2 position = e.mousePosition;
             position.y = hierarchyRect.yMax;
-            if (EditorWindow.focusedWindow != null) position += EditorWindow.focusedWindow.position.position;
-            else position = HandleUtility.GUIPointToScreenPixelCoordinate(position);
+            position = WindowsHelper.GetMousePositionOnFocusedWindow(position);
 
             Vector2 size = Prefs.defaultWindowSize;
             Rect rect = new Rect(position + new Vector2(-size.x / 2, 36), size);

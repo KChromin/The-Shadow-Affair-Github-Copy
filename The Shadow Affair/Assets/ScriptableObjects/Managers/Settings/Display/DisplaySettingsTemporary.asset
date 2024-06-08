@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc24067b73c8e04d9c413f02fc8107c, type: 3}
+  m_Name: DisplaySettingsTemporary
+  m_EditorClassIdentifier: 
+  fullscreenMode: 0
+  aspectRatio: 0
+  resolutionPreset16X9: 2
+  resolutionPreset16X10: 2
+  resolutionPreset21X9: 0
+  resolutionCustom: 0
+  resolutionCustomHeight: 1080
+  resolutionCustomWidth: 1920
+  vSyncMode: 1
+  framerateCustomMax: 0
+  framerateCustomMaxValue: 144
+  runInBackground: 0

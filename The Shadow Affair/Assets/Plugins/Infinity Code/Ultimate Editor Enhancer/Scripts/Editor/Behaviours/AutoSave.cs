@@ -56,8 +56,18 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 
         private static void Save()
         {
-            EditorSceneManager.SaveOpenScenes();
-            AssetDatabase.SaveAssets();
+            if (!Prefs.autosaveToSeparateFile)
+            {
+                EditorSceneManager.SaveOpenScenes();
+                AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                string path = scene.path;
+                path = path.Substring(0, path.Length - 6) + "_autosave.unity";
+                EditorSceneManager.SaveScene(scene, path, true);
+            }
         }
     }
 }

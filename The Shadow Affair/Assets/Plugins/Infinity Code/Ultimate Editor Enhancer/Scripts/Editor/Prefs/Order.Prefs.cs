@@ -9,6 +9,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             internal const float AddScriptingDefineSymbols = 5;
             internal const float Autosave = 8;
+            internal const float BackupScene = 9;
             internal const float Bookmarks = 10;
             internal const float DuplicateTool = 40;
             internal const float ImproveBehaviors = 60;

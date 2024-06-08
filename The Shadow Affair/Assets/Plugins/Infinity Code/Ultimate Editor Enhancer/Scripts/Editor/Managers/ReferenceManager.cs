@@ -16,6 +16,7 @@ using UnityEngine;
 namespace InfinityCode.UltimateEditorEnhancer
 {
     [Serializable]
+    [PreferBinarySerialization]
     public class ReferenceManager : ScriptableObject
     {
         [SerializeField]
@@ -44,6 +45,9 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         [SerializeField]
         private List<NoteItem> _notes = new List<NoteItem>();
+        
+        [SerializeField]
+        private List<MiniLayout> _miniLayouts = new List<MiniLayout>();
 
         private static ReferenceManager _instance;
 
@@ -79,6 +83,11 @@ namespace InfinityCode.UltimateEditorEnhancer
         public static List<HeaderRule> headerRules
         {
             get { return instance._headerRules; }
+        }
+        
+        public static List<MiniLayout> miniLayouts
+        {
+            get { return instance._miniLayouts; }
         }
 
         public static List<NoteItem> notes
@@ -141,10 +150,15 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void ResetContent()
         {
+            backgroundRules.Clear();
             bookmarks.Clear();
+            emptyInspectorItems.Clear();
             favoriteWindows.Clear();
             headerRules.Clear();
+            miniLayouts.Clear();
+            projectFolderIcons.Clear();
             quickAccessItems.Clear();
+            RecordUpgrader.InitDefaultEmptyInspectorItems();
             RecordUpgrader.InitDefaultQuickAccessItems();
             Save();
         }

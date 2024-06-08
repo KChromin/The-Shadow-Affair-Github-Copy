@@ -1,123 +1,167 @@
 using System;
+using System.Collections.Generic;
+using SmugRagGames.Patterns.Singleton;
 using UnityEngine;
-using SmugRag.Templates.Singletons;
 
-namespace SmugRag.Managers.Settings
+namespace SmugRagGames.Managers.Settings
 {
-    public class SettingsManager : SingletonPersistentManager<SettingsManager>
+    public class SettingsManager : SingletonPersistent<SettingsManager>
     {
-        #region Settings Scriptable Objects
+        #region Settings
 
-        [field: Header("Current Settings")]
+        [field: Header("Settings")]
         [field: SerializeField]
         public SettingsManagerData CurrentSettings { get; private set; }
 
-        [Header("Default Settings")]
-        [SerializeField]
-        private SettingsManagerData defaultSettings;
+        [field: SerializeField]
+        public SettingsManagerData TemporarySettings { get; private set; }
 
-        [Header("Temporary Settings")]
-        [SerializeField]
-        private SettingsManagerData temporarySettings;
+        [field: SerializeField]
+        protected SettingsManagerData DefaultSettings { get; private set; }
 
-        #endregion Settings Scriptable Objects
+        #endregion Settings
 
-        private SettingsManagerActions _settingsActions;
+        #region Settings Managers
 
-        private SettingsManagerFileSaveLoad _fileSaveLoadManager;
-
-        //Settings Managers//
         //Game//
-        private SettingsManagerGame _gameManager;
+        private SettingsManagerGame _managerGame;
 
         //Display//
-        private SettingsManagerDisplay _displayManager;
+        private SettingsManagerDisplay _managerDisplay;
 
-        //Graphics//
-        private SettingsManagerGraphics _graphicsManager;
-
-        //Controls//
-        private SettingsManagerControls _controlsManager;
+        //Visual//
+        private SettingsManagerVisual _managerVisual;
 
         //Audio//
-        private SettingsManagerAudio _audioManager;
-        private SettingsUpdaterAudio _audioUpdater;
+        private SettingsManagerAudio _managerAudio;
 
-        [Space]
-        public bool forceUpdateSettings;
+        //Control//
+        private SettingsManagerControl _managerControl;
 
-        private void Update()
+        #endregion Settings Managers
+
+        #region Settings Update Handlers
+
+        //Display//
+        private SettingsUpdateHandlerDisplay _updateHandlerDisplay;
+
+        #endregion Settings Update Handlers
+
+        #region Settings Types
+
+        private enum SettingsType
         {
-            if (forceUpdateSettings)
-            {
-                _gameManager.ApplyTemporarySettings();
-                _displayManager.ApplyTemporarySettings();
-                _graphicsManager.ApplyTemporarySettings();
-                _controlsManager.ApplyTemporarySettings();
-                _audioManager.ApplyTemporarySettings();
-                forceUpdateSettings = false;
-            }
+            Game,
+            Display,
+            Visual,
+            Audio,
+            Control
         }
+
+        #endregion Settings Types
+
+        private SettingsManagerActions _actions;
+
+        private SettingsManagerFileHandler _fileHandler;
 
         #region Setup
 
         protected override void Awake()
         {
             base.Awake();
+            Setup();
 
-            CreateAndSetupManagers();
+            _actions.InvokeOnSettingsFileLoadRequest();
         }
 
-        private void CreateAndSetupManagers()
+        private void Setup()
         {
-            //Setup Event Action Manager//
-            _settingsActions = new SettingsManagerActions();
+            //Actions//
+            _actions = new SettingsManagerActions();
 
-            //File save and load//
-            _fileSaveLoadManager = new SettingsManagerFileSaveLoad();
-            _fileSaveLoadManager.Setup(CurrentSettings.Game, CurrentSettings.Display, CurrentSettings.Graphics, CurrentSettings.Audio, CurrentSettings.Controls);
+            //File handler//
+            _fileHandler = new SettingsManagerFileHandler(CurrentSettings, _actions);
+
+            #region Settings Managers
 
             //Game//
-            _gameManager = new SettingsManagerGame();
-            _gameManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Game, CurrentSettings.Game, defaultSettings.Game, temporarySettings.Game, _settingsActions);
+            _managerGame = new SettingsManagerGame(CurrentSettings.Game, TemporarySettings.Game, DefaultSettings.Game, _actions, (short)SettingsType.Game);
 
             //Display//
-            _displayManager = new SettingsManagerDisplay();
-            _displayManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Display, CurrentSettings.Display, defaultSettings.Display, temporarySettings.Display, _settingsActions);
+            _managerDisplay = new SettingsManagerDisplay(CurrentSettings.Display, TemporarySettings.Display, DefaultSettings.Display, _actions, (short)SettingsType.Display);
 
-            //Graphics//
-            _graphicsManager = new SettingsManagerGraphics();
-            _graphicsManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Graphics, CurrentSettings.Graphics, defaultSettings.Graphics, temporarySettings.Graphics, _settingsActions);
-
-            //Controls//
-            _controlsManager = new SettingsManagerControls();
-            _controlsManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Controls, CurrentSettings.Controls, defaultSettings.Controls, temporarySettings.Controls, _settingsActions);
+            //Visual//
+            _managerVisual = new SettingsManagerVisual(CurrentSettings.Visual, TemporarySettings.Visual, DefaultSettings.Visual, _actions, (short)SettingsType.Visual);
 
             //Audio//
-            _audioManager = new SettingsManagerAudio();
-            _audioUpdater = new SettingsUpdaterAudio();
-            _audioManager.Setup(_fileSaveLoadManager, SettingsManagerFileSaveLoad.SettingType.Audio, CurrentSettings.Audio, defaultSettings.Audio, temporarySettings.Audio, _settingsActions);
-            _audioUpdater.Setup(_settingsActions, CurrentSettings.Audio);
+            _managerAudio = new SettingsManagerAudio(CurrentSettings.Audio, TemporarySettings.Audio, DefaultSettings.Audio, _actions, (short)SettingsType.Audio);
+
+            //Control//
+            _managerControl = new SettingsManagerControl(CurrentSettings.Control, TemporarySettings.Control, DefaultSettings.Control, _actions, (short)SettingsType.Control);
+
+            #endregion Settings Managers
+
+            #region Update Handlers
+
+            //Display//
+            _updateHandlerDisplay = new SettingsUpdateHandlerDisplay(CurrentSettings.Display, _actions, (short)SettingsType.Display);
+
+            #endregion Update Handlers
         }
 
         #endregion Setup
 
-        #region OnDisable
+        #region Public methodes
+
+        private SettingsManagerBase GetManagerBySettingsType(short settingsType)
+        {
+            return settingsType switch
+            {
+                0 => _managerGame,
+                1 => _managerDisplay,
+                2 => _managerVisual,
+                3 => _managerAudio,
+                4 => _managerControl,
+                _ => null
+            };
+        }
+
+        public void ApplySettings(short settingsType)
+        {
+            SettingsManagerBase settingsManager = GetManagerBySettingsType(settingsType);
+            settingsManager.UpdateSettingsTemporaryToCurrent();
+        }
+
+        public void DefaultSettingsValue(short settingsType)
+        {
+            SettingsManagerBase settingsManager = GetManagerBySettingsType(settingsType);
+            settingsManager.UpdateSettingsDefaultToCurrent();
+        }
+
+        public void UpdateTemporarySettings(short settingsType)
+        {
+            SettingsManagerBase settingsManager = GetManagerBySettingsType(settingsType);
+            settingsManager.UpdateSettingsCurrentToTemporary();
+        }
+
+        public bool UpdateUnsavedChanges(short settingsType)
+        {
+            return settingsType switch
+            {
+                0 => _managerGame.HasUnsavedChanges(),
+                1 => _managerDisplay.HasUnsavedChanges(),
+                2 => _managerVisual.HasUnsavedChanges(),
+                3 => _managerAudio.HasUnsavedChanges(),
+                4 => _managerControl.HasUnsavedChanges(),
+                _ => false
+            };
+        }
+
+        #endregion Public methodes
 
         private void OnDisable()
         {
-            UnsubscribeManagersActions();
+            _fileHandler?.UnsubscribeFromEvents();
         }
-
-        private void UnsubscribeManagersActions()
-        {
-            _gameManager?.UnsubscribeFromEvents();
-            _displayManager?.UnsubscribeFromEvents();
-            _graphicsManager?.UnsubscribeFromEvents();
-            _controlsManager?.UnsubscribeFromEvents();
-            _audioManager?.UnsubscribeFromEvents();
-        }
-
-        #endregion OnDisable
     }
 }

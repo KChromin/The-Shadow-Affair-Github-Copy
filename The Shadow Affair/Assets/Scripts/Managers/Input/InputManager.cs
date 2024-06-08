@@ -1,16 +1,18 @@
-using SmugRag.Templates.Singletons;
+using System;
+using SmugRagGames.Patterns.Singleton;
+using UnityEngine;
 
-namespace SmugRag.Managers.Input
+namespace SmugRagGames.Managers.Input
 {
-    public class InputManager : SingletonPersistentManager<InputManager>
+    public class InputManager : SingletonPersistent<InputManager>
     {
         public GameControls CurrentInput { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
-
-            //Setup new input actions//
+            
+            //Setup input actions//
             CurrentInput = new GameControls();
         }
 

@@ -24,6 +24,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private bool isDragging;
         private GUIContent labelContent;
         private Vector2 lastMousePosition;
+        private double lastRepaintTime;
         private Rect targetRect;
         private bool waitDragAndDropEnds;
         private bool waitRestoreAfterPicker;
@@ -49,6 +50,24 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         public EditorWindow targetWindow
         {
             get { return _targetWindow; }
+        }
+
+        private bool CloseWindowIfNeeded()
+        {
+            if (!closeOnLossFocus || focusedWindow == this || focusedWindow == _targetWindow) return false;
+            
+            if (ShouldRestoreFocus())
+            {
+                _targetWindow.Focus();
+                waitRestoreAfterPicker = false;
+            }
+            else
+            {
+                AutoSizePopupWindow w = _targetWindow as AutoSizePopupWindow;
+                if ((w == null || w.closeOnLossFocus) && TryToClose()) return true;
+            }
+
+            return false;
         }
 
         private void DrawLabel()
@@ -78,6 +97,16 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Close();
         }
 
+        private void OnEnable()
+        {
+            EditorApplication.update += OnUpdate;
+        }
+
+        private void OnUpdate()
+        {
+            if (EditorApplication.timeSinceStartup - lastRepaintTime > 0.5f) Repaint();
+        }
+
         protected void OnDestroy()
         {
             OnPin = null;
@@ -89,6 +118,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         protected override void OnGUI()
         {
+            Event e = Event.current;
+            if (e.type == EventType.Repaint) lastRepaintTime = EditorApplication.timeSinceStartup;
+            
             try
             {
                 if (_targetWindow == null)
@@ -97,24 +129,14 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                     return;
                 }
 
-                if (closeOnLossFocus && focusedWindow != this && focusedWindow != _targetWindow)
-                {
-                    if (waitRestoreAfterPicker && (focusedWindow == null || focusedWindow.GetType() != ObjectSelectorRef.type))
-                    {
-                        _targetWindow.Focus();
-                        waitRestoreAfterPicker = false;
-                    }
-                    else
-                    {
-                        AutoSizePopupWindow w = _targetWindow as AutoSizePopupWindow;
-                        if (w != null && !w.closeOnLossFocus)
-                        {
-                        }
-                        else if (TryToClose()) return;
-                    }
-                }
+                if (CloseWindowIfNeeded()) return;
 
-                if (!isDragging && targetRect != _targetWindow.position && _targetWindow.position.position != Vector2.zero) SetRect(_targetWindow.position);
+                if (!isDragging
+                    && e.type == EventType.Repaint
+                    && _targetWindow.position.position != Vector2.zero)
+                {
+                    SetRect(_targetWindow.position);
+                }
 
                 base.OnGUI();
 
@@ -127,16 +149,14 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
                 EditorGUILayout.EndHorizontal();
             }
-            catch (ExitGUIException e)
+            catch (ExitGUIException)
             {
-                throw e;
+                throw;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                Log.Add(e);
+                Log.Add(exception);
             }
-
-            Repaint();
         }
 
         private void OnTargetRectChanged(Rect rect)
@@ -144,57 +164,75 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             SetRect(rect);
         }
 
+        private void ProcessLabelDrag()
+        {
+            if (!isDragging) return;
+            
+            Event e = Event.current;
+            Vector2 mousePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
+            Vector2 delta = mousePosition - lastMousePosition;
+
+            Rect rect = position;
+            rect.position += delta;
+            if (rect.x < 0)
+            {
+                delta.x -= rect.x;
+                rect.x = 0;
+            }
+            if (rect.y < 0)
+            {
+                delta.y -= rect.y;
+                rect.y = 0;
+            }
+            
+            WindowsHelper.SetRect(this, rect);
+            
+            targetRect.position += delta;
+            _targetWindow.position = targetRect;
+
+            lastMousePosition = mousePosition;
+
+            e.Use();
+        }
+
         private void ProcessLabelEvents(Rect labelRect)
         {
             Event e = Event.current;
-            if (e.type == EventType.MouseDown)
+            
+            if (e.type == EventType.MouseDown) ProcessLabelPress(labelRect);
+            else if (e.rawType == EventType.MouseUp) ProcessLabelRelease();
+            else if (e.type == EventType.MouseDrag) ProcessLabelDrag();
+        }
+
+        private void ProcessLabelRelease()
+        {
+            Event e = Event.current;
+            if (isDragging && e.button == 0)
             {
-                Rect r = new Rect(0, 0, labelRect.xMax, 20);
-                if (e.button == 0 && r.Contains(e.mousePosition) && GUIUtility.hotControl == 0)
-                {
-                    isDragging = true;
-                    _targetWindow.Focus();
-                    Focus();
-                    lastMousePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
-                    GUIUtility.hotControl = GUIUtility.GetControlID(FocusType.Passive);
-                    e.Use();
-                    GUIUtility.ExitGUI();
-                }
+                isDragging = false;
+
+                AutoSizePopupWindow cw = _targetWindow as AutoSizePopupWindow;
+                if (cw != null) cw.wasMoved = true;
+
+                e.Use();
+                GUIUtility.hotControl = 0;
+                GUIUtility.ExitGUI();
             }
-            else if (e.rawType == EventType.MouseUp)
+        }
+
+        private void ProcessLabelPress(Rect labelRect)
+        {
+            Event e = Event.current;
+            Rect r = new Rect(0, 0, labelRect.xMax, 20);
+            if (e.button == 0 && r.Contains(e.mousePosition) && GUIUtility.hotControl == 0)
             {
-                if (isDragging && e.button == 0)
-                {
-                    isDragging = false;
-
-                    AutoSizePopupWindow cw = _targetWindow as AutoSizePopupWindow;
-                    if (cw != null) cw.wasMoved = true;
-
-                    e.Use();
-                    GUIUtility.hotControl = 0;
-                    GUIUtility.ExitGUI();
-                }
-            }
-            else if (e.type == EventType.MouseDrag)
-            {
-                if (isDragging)
-                {
-                    Vector2 mousePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
-                    Vector2 delta = mousePosition - lastMousePosition;
-
-                    Rect rect = position;
-                    rect.position += delta;
-                    WindowsHelper.SetRect(this, rect);
-
-                    rect = _targetWindow.position;
-                    rect.position += delta;
-                    _targetWindow.position = rect;
-
-                    lastMousePosition = mousePosition;
-
-                    e.Use();
-                    GUIUtility.ExitGUI();
-                }
+                isDragging = true;
+                _targetWindow.Focus();
+                Focus();
+                lastMousePosition = GUIUtility.GUIToScreenPoint(e.mousePosition);
+                GUIUtility.hotControl = GUIUtility.GetControlID(FocusType.Passive);
+                e.Use();
+                GUIUtility.ExitGUI();
             }
         }
 
@@ -205,6 +243,22 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Vector2 pos = new Vector2(rect.x, rect.y) - new Vector2(0, Height);
             Rect r = new Rect(pos, size);
             WindowsHelper.SetRect(this, r);
+            //Debug.Log("SetRect " + r + "    " + position);
+        }
+
+        private bool ShouldRestoreFocus()
+        {
+            if (!waitRestoreAfterPicker) return false;
+            if (focusedWindow == null) return true;
+            
+            Type type = focusedWindow.GetType();
+            if (type == ObjectSelectorRef.type) return false;
+            
+#if UNITY_2023_2_OR_NEWER
+            if (type.Name == "ContextMenuWindow") return false;
+#endif
+            
+            return true;
         }
 
         public static PinAndClose Show(EditorWindow window, Rect inspectorRect, Action OnClose, string label)

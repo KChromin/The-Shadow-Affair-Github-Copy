@@ -42,7 +42,8 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
         {
             VisualElement el = new VisualElement();
             el.style.borderBottomWidth = el.style.borderTopWidth = el.style.borderLeftWidth = el.style.borderRightWidth = 1;
-            el.style.borderBottomColor = el.style.borderTopColor = el.style.borderLeftColor = el.style.borderRightColor = Color.gray;
+            el.style.borderBottomColor = el.style.borderTopColor = el.style.borderLeftColor = el.style.borderRightColor = 
+                Styles.isProSkin? new Color(.33f, .33f, .33f) : new Color(.66f, .66f, .66f); 
             el.style.marginLeft = 3;
             el.style.marginRight = 5;
             parent.Add(el);

@@ -39,7 +39,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             Open(Discord);
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Documentation", false, 120)]
+        [MenuItem(WindowsHelper.MenuPath + "Documentation", false, MenuItemOrder.Documentation)]
         public static void OpenDocumentation()
         {
             OpenDocumentation(null);

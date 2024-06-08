@@ -543,7 +543,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             return true;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "View Gallery", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "View Gallery", false, MenuItemOrder.ViewGallery)]
         public static void OpenWindow()
         {
             GetWindow<ViewGallery>(false, "View Gallery", true).wantsMouseMove = true;

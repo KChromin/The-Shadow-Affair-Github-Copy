@@ -1,0 +1,27 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Visuals/GUIs/Development/CheapMenu/CheapMenu.uss?fileID=7433441132597879392&amp;guid=30941151ba0d79948a5716c543d66af6&amp;type=3#CheapMenu" />
+    <engine:Label text="The Shadow Affair" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" style="height: 140px; -unity-text-align: middle-center; font-size: 120px; -unity-font-definition: url(&quot;project://database/Assets/Visuals/Fonts/amatic-sc/AmaticSC-Bold.ttf?fileID=12800000&amp;guid=cbf6b4f27173c034d8f68a40cf1e4876&amp;type=3#AmaticSC-Bold&quot;); -unity-font-style: normal; color: rgb(152, 0, 13);">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="text" table="GUID:c73bbf30c1c7e044398bbc53467024be" entry="Id(539261394944)" />
+        </Bindings>
+    </engine:Label>
+    <engine:VisualElement name="Content" style="flex-grow: 1; flex-direction: row;">
+        <engine:VisualElement name="Buttons" style="flex-grow: 0; flex-shrink: 0; width: 500px; flex-direction: column; padding-top: 400px; align-content: center; justify-content: space-evenly;">
+            <engine:Button text="Start" name="StartButton" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" emoji-fallback-support="false" class="menuButton">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:c73bbf30c1c7e044398bbc53467024be" entry="Id(565479989248)" />
+                </Bindings>
+            </engine:Button>
+            <engine:Button text="Settings" name="SettingsButton" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="menuButton">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:c73bbf30c1c7e044398bbc53467024be" entry="Id(561260519424)" />
+                </Bindings>
+            </engine:Button>
+            <engine:Button text="Exit" name="ExitButton" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="menuButton">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:c73bbf30c1c7e044398bbc53467024be" entry="Id(623453659136)" />
+                </Bindings>
+            </engine:Button>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

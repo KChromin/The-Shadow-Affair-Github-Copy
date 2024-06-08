@@ -249,7 +249,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             DrawActiveSlide();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Getting Started", false, 121)]
+        [MenuItem(WindowsHelper.MenuPath + "Getting Started", false, MenuItemOrder.GettingStarted)]
         public static void OpenWindow()
         {
             GettingStarted wnd = GetWindow<GettingStarted>(true, "Getting Started", true);

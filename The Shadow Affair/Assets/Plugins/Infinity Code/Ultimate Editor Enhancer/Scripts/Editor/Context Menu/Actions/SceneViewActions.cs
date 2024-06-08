@@ -48,13 +48,13 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
             return camera;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Permanent", false, 101)]
+        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Permanent", false, MenuItemOrder.CameraCreatePermanent)]
         private static void CreatePermanentCameraFromSceneView()
         {
             CreateCameraFromSceneView();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Temporary", false, 101)]
+        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Temporary", false, MenuItemOrder.CameraCreateTemporary)]
         private static void CreateTemporaryCameraFromSceneView()
         {
             GameObject container = TemporaryContainer.GetContainer();
@@ -193,7 +193,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
             EditorMenu.Close();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "View States/Create", false, 104)]
+        [MenuItem(WindowsHelper.MenuPath + "View States/Create", false, MenuItemOrder.ViewStatesCreate)]
         public static void SaveViewState()
         {
             GameObject container = TemporaryContainer.GetContainer();

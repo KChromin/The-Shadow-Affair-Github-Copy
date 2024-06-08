@@ -1,0 +1,17 @@
+{
+    "name": "SmugRagGames.GUIs",
+    "rootNamespace": "",
+    "references": [
+        "GUID:58c4d3d720a18fa45b769e75227f649d",
+        "GUID:51aaf68ef2667fd45a89206b430b2f48"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

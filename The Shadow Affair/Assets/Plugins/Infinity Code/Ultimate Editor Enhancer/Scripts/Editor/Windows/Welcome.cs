@@ -231,7 +231,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             OpenWindow();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Welcome", false, 120)]
+        [MenuItem(WindowsHelper.MenuPath + "Welcome", false, MenuItemOrder.Welcome)]
         public static void OpenWindow()
         {
             if (wnd != null) return;
@@ -241,7 +241,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             wnd.Focus();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Rate and Review", false, 125)]
+        [MenuItem(WindowsHelper.MenuPath + "Rate and Review", false, MenuItemOrder.RateAndReview)]
         public static void RateAndReview()
         {
             Links.OpenReviews();

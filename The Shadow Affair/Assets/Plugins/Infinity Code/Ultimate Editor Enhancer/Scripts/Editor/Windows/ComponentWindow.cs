@@ -78,7 +78,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 _component = value;
                 if (_component != null)
                 {
-                    componentID = GlobalObjectId.GetGlobalObjectIdSlow(value).ToString();
+                    componentID = GlobalObjectIdHelper.GetGlobalObjectIdSlow(value).ToString();
                     if (editor != null) DestroyImmediate(editor);
                     InitEditor();
 
@@ -436,9 +436,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 if (!isMissed)
                 {
                     GlobalObjectId gid;
-                    if (!string.IsNullOrEmpty(componentID) && GlobalObjectId.TryParse(componentID, out gid))
+                    if (!string.IsNullOrEmpty(componentID) && GlobalObjectIdHelper.TryParse(componentID, out gid))
                     {
-                        _component = GlobalObjectId.GlobalObjectIdentifierToObjectSlow(gid) as Component;
+                        _component = GlobalObjectIdHelper.GlobalObjectIdentifierToObjectSlow(gid) as Component;
                         isMissed = _component == null;
                     }
                     else isMissed = true;
@@ -449,9 +449,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                     if (GUILayout.Button("Try to restore"))
                     {
                         GlobalObjectId gid;
-                        if (!string.IsNullOrEmpty(componentID) && GlobalObjectId.TryParse(componentID, out gid))
+                        if (!string.IsNullOrEmpty(componentID) && GlobalObjectIdHelper.TryParse(componentID, out gid))
                         {
-                            _component = GlobalObjectId.GlobalObjectIdentifierToObjectSlow(gid) as Component;
+                            _component = GlobalObjectIdHelper.GlobalObjectIdentifierToObjectSlow(gid) as Component;
                             isMissed = _component == null;
                         }
                     }

@@ -104,7 +104,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Check Integrity", false, 123)]
+        [MenuItem(WindowsHelper.MenuPath + "Check Integrity", false, MenuItemOrder.CheckIntegrity)]
         public static void OpenWindow()
         {
             GetWindow<CheckIntegrityWindow>("Check Integrity");

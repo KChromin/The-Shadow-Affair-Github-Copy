@@ -11,7 +11,6 @@ namespace InfinityCode.UltimateEditorEnhancer
         private const string UEESettingsPath = "Project/Ultimate Editor Enhancer";
         private const string ContextMenuSettingsPath = UEESettingsPath + "/Context Menu";
         private const string CreateBrowserSettingsPath = UEESettingsPath + "/Create Browser";
-        private const string FavoriteWindowsSettingsPath = UEESettingsPath + "/Favorite Windows";
         private const string GameObjectSettingsPath = UEESettingsPath + "/GameObject";
         private const string HierarchySettingsPath = UEESettingsPath + "/Hierarchy";
         private const string InspectorSettingsPath = UEESettingsPath + "/Inspector";
@@ -21,12 +20,15 @@ namespace InfinityCode.UltimateEditorEnhancer
         private const string ToolbarSettingsPath = UEESettingsPath + "/Toolbar";
         private const string UnsafeSettingsPath = UEESettingsPath + "/Unsafe";
         private const string ViewsSettingsPath = UEESettingsPath + "/Views";
+        private const string WindowsSettingsPath = UEESettingsPath + "/Windows";
 
         // Second level
         private const string EmptyInspectorSettingsPath = InspectorSettingsPath + "/Empty Inspector";
         private const string BackgroundsSettingsPath = HierarchySettingsPath + "/Backgrounds";
+        private const string FavoriteWindowsSettingsPath = WindowsSettingsPath + "/Favorite Windows";
         private const string HeadersSettingsPath = HierarchySettingsPath + "/Headers";
         private const string HighlightSettingsPath = SceneViewSettingsPath + "/Highlight";
+        private const string MiniLayoutsSettingsPath = WindowsSettingsPath + "/Mini Layouts";
         private const string NavigationSettingsPath = SceneViewSettingsPath + "/Navigation";
         private const string QuickAccessSettingsPath = SceneViewSettingsPath + "/Quick Access Bar";
         private const string ProjectFolderIconsSettingsPath = ProjectSettingsPath + "/Folder Icons";
@@ -148,6 +150,18 @@ namespace InfinityCode.UltimateEditorEnhancer
                 label = "Inspector",
                 guiHandler = Prefs.InspectorManager.DrawWithToolbar,
                 keywords = Prefs.InspectorManager.GetKeywords()
+            };
+            return provider;
+        }
+        
+        [SettingsProvider]
+        public static SettingsProvider GetMiniLayoutsSettingsProvider()
+        {
+            SettingsProvider provider = new SettingsProvider(MiniLayoutsSettingsPath, SettingsScope.Project)
+            {
+                label = "Mini Layouts",
+                guiHandler = Prefs.MiniLayoutsManager.DrawWithToolbar,
+                keywords = Prefs.MiniLayoutsManager.GetKeywords()
             };
             return provider;
         }
@@ -294,6 +308,11 @@ namespace InfinityCode.UltimateEditorEnhancer
             SettingsService.OpenProjectSettings(FavoriteWindowsSettingsPath);
         }
 
+        public static void OpenMiniLayoutsSettings()
+        {
+            SettingsService.OpenProjectSettings(MiniLayoutsSettingsPath);
+        }
+
         public static void OpenQuickAccessSettings()
         {
             SettingsService.OpenProjectSettings(QuickAccessSettingsPath);
@@ -304,7 +323,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             SettingsService.OpenProjectSettings(SearchWindowsSettingsPath);
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Settings", false, 122)]
+        [MenuItem(WindowsHelper.MenuPath + "Settings", false, MenuItemOrder.Settings)]
         public static void OpenSettings()
         {
             SettingsService.OpenProjectSettings(UEESettingsPath);

@@ -1,0 +1,19 @@
+{
+    "name": "SmugRagGames.Player",
+    "rootNamespace": "SmugRagGames.Player",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:a22516839d85eff41bafc05b317e9655",
+        "GUID:58c4d3d720a18fa45b769e75227f649d",
+        "GUID:51aaf68ef2667fd45a89206b430b2f48"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

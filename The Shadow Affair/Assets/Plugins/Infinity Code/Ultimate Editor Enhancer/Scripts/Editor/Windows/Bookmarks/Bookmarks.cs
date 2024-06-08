@@ -830,7 +830,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             menu.Show();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Bookmarks", false, 100)]
+        [MenuItem(WindowsHelper.MenuPath + "Bookmarks", false, MenuItemOrder.Bookmarks)]
         public static EditorWindow ShowWindow()
         {
             return ShowWindow(null);

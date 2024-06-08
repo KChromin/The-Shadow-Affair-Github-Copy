@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d117bda53f2f2840aeb656745260c71, type: 3}
+  m_Name: PlayerMovementDefaultCheckers
+  m_EditorClassIdentifier: 
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  groundCheckDistance: 0.72
+  groundCheckRadius: 0.26
+  slopeCheckSphereDistance: 0.72
+  slopeCheckSphereRadius: 0.26
+  slopeCheckRayDistance: 0.04
+  slopeCheckRayOffsetY: 0.02
+  slopeCheckAngleMinimum: 5
+  slopeCheckAngleMaximum: 50
+  cellingCheckDistanceMinimum: 0.75
+  cellingCheckRadius: 0.25
+  cellingCheckErrorMargin: 0.05
+  debugGizmos:
+    groundCheckDraw: 1
+    groundCheckColorTrue: {r: 0, g: 1, b: 0, a: 1}
+    groundCheckColorFalse: {r: 1, g: 0, b: 0, a: 1}
+    slopeCheckDraw: 0
+    slopeCheckColorTrue: {r: 0, g: 1, b: 0, a: 1}
+    slopeCheckColorFalse: {r: 1, g: 0, b: 0, a: 1}
+    cellingCheckDraw: 0
+    cellingCheckColorTrue: {r: 0, g: 1, b: 0, a: 1}
+    cellingCheckColorFalse: {r: 1, g: 0, b: 0, a: 1}

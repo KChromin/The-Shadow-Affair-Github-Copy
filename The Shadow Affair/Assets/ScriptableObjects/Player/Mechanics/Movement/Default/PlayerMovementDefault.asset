@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6eae5c19d8b8249b6126ee709dcde2, type: 3}
+  m_Name: PlayerMovementDefault
+  m_EditorClassIdentifier: 
+  movementSpeeds:
+    maxSpeedWalk: 3
+    maxSpeedRun: 6
+    maxSpeedCrouchWalk: 2
+    maxSpeedInAir: 0
+  movementFactors:
+    backwardsMovement: 0.85
+    sidewaysMovement: 0.92
+  physicsParameters:
+    dragGrounded: 10
+    dragInAir: 0
+    materialIdle: {fileID: 13400000, guid: cf960437fc55b654da504afd86d5117e, type: 2}
+    materialIdleFullyStopped: {fileID: 13400000, guid: 84ba9e5a13800a549833eef710e51807, type: 2}
+    materialMove: {fileID: 13400000, guid: 851539f2ddd4d284f92b71f508d93d52, type: 2}
+    materialInAir: {fileID: 13400000, guid: 88cb3ac3ea27bf6499c50427b52174f6, type: 2}
+    fullyStoppedMoveMagnitudeThreshold: 0.5
+    additionalGroundingForce: 0.5
+    steepSlopeSlidingForce: 10
+  stairsHandlerParameters:
+    stepHeight: 0.4
+    stepHeightMinimal: 0.05
+    stepUpForceWalk: 5.2
+    stepUpForceRun: 8
+    stepUpForceCrouchWalk: 4
+    stepCheckDistanceHigh: 0.41
+    stepCheckDistanceLow: 0.36
+    stepCheckIterationPerSide: 2
+    stepCheckIterationOffsetInDegrees: 12
+    stepCheckDrawGizmos: 0

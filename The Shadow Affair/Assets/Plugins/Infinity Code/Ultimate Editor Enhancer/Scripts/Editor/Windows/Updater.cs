@@ -233,7 +233,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             EditorGUILayout.EndScrollView();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Check Updates", false, 123)]
+        [MenuItem(WindowsHelper.MenuPath + "Check Updates", false, MenuItemOrder.CheckUpdates)]
         public static void OpenWindow()
         {
             GetWindow<Updater>(false, "Ultimate Editor Enhancer Updater", true);

@@ -472,7 +472,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Handles.color = color;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Distance Tool", false, 100)]
+        [MenuItem(WindowsHelper.MenuPath + "Distance Tool", false, MenuItemOrder.DistanceTool)]
         public static void OpenWindow()
         {
             GetWindow<DistanceTool>(false, "Distance Tool").autoRepaintOnSceneChange = true;

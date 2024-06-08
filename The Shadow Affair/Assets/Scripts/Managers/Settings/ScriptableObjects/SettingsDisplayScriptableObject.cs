@@ -1,32 +1,44 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace SmugRag.ScriptableObjects.Settings
+namespace SmugRagGames.Managers.Settings
 {
-    [CreateAssetMenu(fileName = "SettingsDisplayScriptableObject", menuName = "ScriptableObjects/Settings/DisplaySettings")]
+    [CreateAssetMenu(fileName = "DisplaySettings", menuName = "ScriptableObjects/Settings/Display")]
     public class SettingsDisplayScriptableObject : ScriptableObject
     {
-        [Header("Resolution Settings")]
-        [Space]
-        public short resolutionAspectRatioMode = 0; //0 - 16:9, 1 - 16:10//
-        public short resolutionPreset = 1;
-        [Space]
-        public bool resolutionUseCustom = false;
-        public int resolutionCustomHeight = 1080;
-        public int resolutionCustomWidth = 1920;
+        [Header("Fullscreen")]
+        [Range(0, 2)]
+        public byte fullscreenMode = 0;
+
+        [Header("Resolution")]
+        [Range(0, 2)]
+        public byte aspectRatio = 0;
+
+        [Range(0, 6)]
+        public byte resolutionPreset16X9 = 2;
+
+        [Range(0, 4)]
+        public byte resolutionPreset16X10 = 2;
+
+        [Range(0, 5)]
+        public byte resolutionPreset21X9 = 0;
+
+        [Header("Custom Resolution")]
+        public bool resolutionCustom = false;
+
+        public short resolutionCustomHeight = 1080;
+        public short resolutionCustomWidth = 1920;
 
         [Header("VSync")]
-        [Space]
-        public short vSyncMode = 0;
-        [Space]
-        public bool framerateCapCustom = false;
-        [Range(1, 1000)]
-        public short framerateCapValue = 60;
-    }
+        [Range(0, 4)]
+        public byte vSyncMode = 1;
 
-    public class ResolutionData
-    {
-        public string Name;
-        public int Height;
-        public int Width;
+        [Header("Custom Framerate")]
+        public bool framerateCustomMax = false;
+        [Range(1, 1000)]
+        public short framerateCustomMaxValue = 144;
+
+        [Header("Run In Background")]
+        public bool runInBackground = false;
     }
 }
